@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  resources :clinics
-  devise_for :patients
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: "home#index"
+
+  devise_for :patients
+
+  resources :clinics
+
+
+  namespace :api, format: :json do
+    resources :clinics, only: %i[index]
+  end
 end
